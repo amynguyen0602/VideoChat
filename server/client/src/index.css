@@ -1,0 +1,364 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url(/background.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.form-signin {
+  background-color: white !important;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 1px 1px 3px 2px #f0f0f0;
+  margin: 100px auto;
+  padding: 50px;
+  border-radius: 20px !important;
+}
+
+.edit-form {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+nav {
+  background-color: #262626 !important;
+}
+
+.btn-signin {
+  border-radius: 50px !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+input {
+  margin-top: 20px !important;
+}
+
+.sign-msg {
+  text-align: center;
+}
+
+.error {
+  margin-top: 5px;
+  font-size: 12px;
+  margin-left: 1px;
+  text-align: left !important;
+}
+
+.form-center {
+  text-align: center;
+}
+
+.logo-img {
+  margin-top: 0px !important;
+}
+
+.navbar-brand {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.navbar-brand :hover {
+  opacity: 0.8;
+}
+
+#app-name {
+  padding-left: 10px;
+  font-family: "B612", sans-serif;
+}
+
+.navbar {
+  background-color: rgb(36, 41, 46);
+}
+
+.user-info {
+  pointer-events: none;
+}
+
+.name {
+  font-size: 15px;
+  text-shadow: 0px 0px 1px #000000;
+}
+
+button.dropdown-item {
+  text-shadow: 0px 0px 1px #000000;
+  font-size: 14px;
+}
+
+.email-dropdown {
+  font-size: 11px;
+}
+
+.avatar {
+  padding: 0px !important;
+  margin-top: 6px;
+}
+
+.avatar :hover {
+  border: 1px solid #007bff;
+  border-radius: 5px;
+}
+
+.dropdown-menu {
+  margin-top: 5px !important;
+}
+
+.avatar-image {
+  border-radius: 5px !important;
+}
+
+svg.bi-pencil-fill {
+  float: right;
+  padding-right: 3px;
+  margin-right: 5px;
+}
+
+.video-link {
+  margin-right: 30px;
+}
+
+svg.bi-camera-video {
+  margin-bottom: 2px;
+  padding-right: 3px;
+}
+
+svg :hover {
+  opacity: 0.5;
+}
+
+.custom-control-label {
+  font-size: 15px;
+  font-style: oblique;
+}
+
+.home-body {
+  padding: 100px 50px 30px;
+  background-color: white;
+  margin: 0px auto;
+}
+
+.participant {
+  background-color: #262626;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 0 20px 15px;
+}
+
+.participant h3 {
+  font-size: 14pt;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+}
+
+.room h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: "B612", sans-serif;
+  font-weight: bold;
+}
+
+.remote-participants {
+  display: inline-block;
+}
+
+.remote-participants .participant {
+  margin-bottom: 20px !important;
+  float: left;
+  padding: 0 15px 10px !important;
+}
+
+.remote-participants .participant video {
+  width: 100%;
+}
+
+.contact {
+  color: white;
+  height: 500px;
+}
+
+.contact .col-8 {
+  border: 1px #404040 solid;
+  background-color: #404040;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.contact .col-4 {
+  background-color: #262626;
+  border: 1px #262626 solid;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.contact .col-4 h5 {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.no-contact p {
+  font-size: 11pt;
+  font-weight: 500;
+  text-align: center;
+  color: lightgray;
+  margin-top: 20px;
+}
+
+.no-contact img {
+  margin-top: 20%;
+  margin-left: 40%;
+}
+
+.plus {
+  float: right;
+  margin-top: 2px;
+}
+
+#accordionMyContact {
+  margin: 20px 10px 20px;
+}
+
+#accordionMyContact .card {
+  background-color: rgb(36, 41, 46, 0.1) !important;
+  border: none !important;
+}
+
+#accordionMyContact .card .card-header {
+  border: none !important;
+  background-color: rgba(39, 37, 37, 0.3) !important;
+  padding: 5px 0px 5px !important;
+}
+
+#accordionMyContact .card .card-body {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.collapse-btn {
+  text-decoration: none !important;
+  color: white !important;
+  outline: none;
+  font-size: 11pt !important;
+}
+
+.collapse-btn:hover {
+  text-decoration: none !important;
+  opacity: 0.5;
+}
+
+.collapse-btn:focus {
+  box-shadow: none !important;
+}
+
+.bi-chevron-down {
+  float: right;
+  margin-top: 5px;
+}
+
+.bi-chevron-down :hover {
+  opacity: 1 !important;
+}
+
+.list-group-item {
+  background-color: rgb(36, 41, 46, 0.1) !important;
+  border: none !important;
+  font-size: 11pt !important;
+  padding: 9px 9px 9px !important;
+}
+
+.list-text {
+  margin-left: 10px;
+  vertical-align: bottom;
+}
+
+.show-details-button {
+  text-align: left;
+  background-color: rgb(36, 41, 46, 0.1);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 0px;
+  margin-top: 2px;
+}
+
+.show-details-button:hover {
+  background-color: rgba(88, 91, 94, 0.9);
+}
+
+.show-details-button:focus {
+  background-color: rgba(88, 91, 94, 0.9);
+  outline: none;
+}
+
+.avatar-contact {
+  border-radius: 15px;
+}
+
+.contact-detail-div {
+  margin-top: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#contact-details {
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 20px;
+  font-size: 16pt;
+}
+
+.email-label {
+  font-size: 11pt;
+}
+
+.email-details {
+  font-size: 11pt;
+  margin-left: 80px;
+  color: #007bff;
+}
+
+.room-list,
+.contact-list {
+  font-size: 11pt;
+}
+
+.edit-room {
+  margin-top: 10px;
+  margin-left: 15% !important;
+}
+
+.room-edit-input {
+  width: 70% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.room-details {
+  margin-top: 20% !important;
+}
+
+.roomid-input {
+  background-color: #404040 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.error-password-room {
+  padding-left: 15%;
+}
+
+.valid {
+  font-size: 9pt;
+  color: rgb(153, 214, 61);
+  margin-top: 5px;
+}
