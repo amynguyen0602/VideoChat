@@ -362,3 +362,16 @@ svg :hover {
   color: rgb(153, 214, 61);
   margin-top: 5px;
 }
+
+.bi-trash-fill {
+  float: right;
+  margin-top: 8%;
+}
+
+#deleteModal {
+  color: black;
+}
+
+#deleteRoom {
+  color: black;
+}

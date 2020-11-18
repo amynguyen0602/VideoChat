@@ -4,9 +4,9 @@ const Room = require('../models/Room');
 const User = require('../models/User');
 
 module.exports = app => {
-    app.post('/api/fetch_rooms', async function(req, res) {
+    app.get('/api/rooms/:email', async function(req, res) {
         const existingUser = await User.findOne({
-            email: req.body.email
+            email: req.params.email
         }).populate("rooms")
         const filteredRoom = existingUser.rooms.map(eachRoom => {
             return {
@@ -72,9 +72,10 @@ module.exports = app => {
         }
     })
 
-    app.post('/api/editRoom', async (req, res) => {
-        const { errors, isValid } = validateRoom(req.body)
-        const { roomID, password } = req.body
+    app.put('/api/room/:roomID', async (req, res) => {
+        const { roomID } = req.params
+        const { password } = req.body
+        const { errors, isValid } = validateRoom({ roomID, password })
 
         if(!isValid) {
             return res.status(400).json({edit_password: "Password is required"})
@@ -86,5 +87,24 @@ module.exports = app => {
             new: true
         })
         res.json(roomUpdate)
+    })
+
+    app.delete('/api/room/:userEmail/:roomID', async (req, res) => {
+        const { roomID, userEmail } = req.params
+
+        const existingUser = await User.findOne({
+            email: userEmail
+        }).populate("rooms")
+
+        const updateRooms = existingUser.rooms.filter(eachRoom => eachRoom.roomID !== roomID)
+
+        const updateUser = await existingUser.updateOne({ rooms: updateRooms }, {
+            new: true
+        } )
+
+        await Room.findOneAndDelete({roomID: roomID})
+
+        res.send(updateUser)
+
     })
 }

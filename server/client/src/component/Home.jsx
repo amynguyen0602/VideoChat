@@ -66,6 +66,14 @@ export class Home extends Component {
         this.setState({showContactDetails: false, showRoomDetails: true, currentRoom: room})
     } 
 
+    deleteContact = () => {
+        this.setState({ showContactDetails: false, showRoomDetails: false})
+    } 
+
+    deleteRoom = () => {
+        this.setState({ showContactDetails: false, showRoomDetails: false})
+    } 
+
     render() {
         const { errors } = this.state
         return (
@@ -126,8 +134,8 @@ export class Home extends Component {
                                 <img width= '150px' src='contact.png' alt="" />
                                 <p>Click on contact name to view contact details.</p>
                             </div>}
-                            {this.state.showContactDetails && <ContactDetails currentContact={this.state.currentContact} />}
-                            {this.state.showRoomDetails && <RoomDetails currentRoom={this.state.currentRoom} />}
+                            {this.state.showContactDetails && <ContactDetails handleDelete = {this.deleteContact} currentContact={this.state.currentContact} />}
+                            {this.state.showRoomDetails && <RoomDetails handleDelete = {this.deleteRoom} currentRoom={this.state.currentRoom} />}
                         </div>
                     </div>
                     <div className="modal fade" data-backdrop="static" data-keyboard="false" id="addContactModal" tabIndex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -175,7 +183,11 @@ function mapStateToProps( { auth, errors, contact } ) {
 }
 
 Home.propTypes = {
-    auth: PropTypes.object.isRequired
-};
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired,
+    contact: PropTypes.object.isRequired,
+    addContact: PropTypes.func.isRequired,
+    fetchContact: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, actions) (Home)

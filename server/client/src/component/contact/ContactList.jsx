@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
+import PropTypes from 'prop-types'
 
 function ContactList({ auth, contact, fetchContact, handleClickContact }) {
     const [contactList, setContactList] = useState([])
@@ -45,6 +46,13 @@ function mapStateToProps( { auth, contact } ) {
         auth,
         contact
     }
+}
+
+ContactList.propTypes = {
+    auth: PropTypes.object.isRequired,
+    contact: PropTypes.object.isRequired,
+    handleClickContact: PropTypes.func.isRequired,
+    fetchContact: PropTypes.func.isRequired
 }
 
 

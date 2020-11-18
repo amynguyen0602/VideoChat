@@ -4,6 +4,7 @@ import NavBar from '../layout/NavBar';
 import RoomForm from './RoomForm';
 import VideoRoom from './VideoRoom'
 import * as actions from '../../actions'
+import PropTypes from 'prop-types'
 
 export class RoomChat extends Component {
     state = {
@@ -40,6 +41,12 @@ function mapStateToProps( { auth, room } ) {
         token: room.token,
         auth
     }
+}
+
+RoomChat.propTypes = {
+    auth: PropTypes.object.isRequired,
+    token: PropTypes.string,
+    joinRoom: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, actions) (RoomChat)

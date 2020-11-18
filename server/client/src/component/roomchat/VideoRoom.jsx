@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Video from 'twilio-video'
 import Participant from './Participant'
+import PropTypes from 'prop-types'
 
 function VideoRoom({ token, handleLogout, roomName }) {
     const [room, setRoom] = useState(null)
@@ -98,6 +99,13 @@ function mapStateToProps( { auth, room } ) {
         auth,
         token: room.token
     }
+}
+
+VideoRoom.propTypes = {
+  auth: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
+  roomName: PropTypes.string.isRequired,
+  handleLogout: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps) (VideoRoom)

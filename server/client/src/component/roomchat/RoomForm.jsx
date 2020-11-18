@@ -3,8 +3,9 @@ import { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
 import isEmpty from '../../validation/isEmpty'
+import PropTypes from 'prop-types'
 
-function RoomForm({ createRoom, handleJoinRoom, errors, auth, token }) {
+function RoomForm({ createRoom, handleJoinRoom, errors, auth }) {
     const [createNewRoom, setCreateNewRoom] = useState(false)
     const [roomID, setRoomID] = useState('')
     const [password, setPassword] = useState('')
@@ -18,9 +19,10 @@ function RoomForm({ createRoom, handleJoinRoom, errors, auth, token }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const room = {roomID, password}
+        setError({})
         if(createNewRoom) {
             await createRoom(auth.user, room)
-            if(isEmpty(errors)) { 
+            if(isEmpty(error)) { 
                 setCreateNewRoom(false)
             }
         } else {
@@ -52,7 +54,7 @@ function RoomForm({ createRoom, handleJoinRoom, errors, auth, token }) {
                         id="roomID" 
                         className="form-control" 
                         placeholder="Room ID" 
-                        onChange={ e => {setRoomID(e.target.value)
+                        onChange={ e => {setRoomID(e.target.value.trim())
                             setError({})} } />
                 {error.roomID && (<div className="error text-danger">{error.roomID}</div>)}
                 </div>
@@ -61,7 +63,7 @@ function RoomForm({ createRoom, handleJoinRoom, errors, auth, token }) {
                         id="password" 
                         className="form-control" 
                         placeholder="Password"
-                        onChange={ e => {setPassword(e.target.value)
+                        onChange={ e => {setPassword(e.target.value.trim())
                             setError({})} }/>
                         {error.password_room && (<div className="error text-danger">{error.password_room}</div>)}
                     </div>
@@ -74,12 +76,18 @@ function RoomForm({ createRoom, handleJoinRoom, errors, auth, token }) {
     )
 }
 
-function mapStateToProps( { auth, errors, room } ) {
+function mapStateToProps( { auth, errors } ) {
     return {
         errors,
-        auth,
-        token: room.token
+        auth
     }
+}
+
+RoomForm.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired,
+    createRoom: PropTypes.func.isRequired,
+    handleJoinRoom: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, actions) (RoomForm)

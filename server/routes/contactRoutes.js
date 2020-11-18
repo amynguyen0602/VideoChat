@@ -3,9 +3,9 @@ const validateAddContactInput = require('../validation/addContactValidation')
 const User = require('../models/User')
 
 module.exports = app => {
-    app.post('/api/fetch_contact', async function(req, res) {
+    app.get('/api/contacts/:email', async function(req, res) {
         const existingUser = await User.findOne({
-            email: req.body.email
+            email: req.params.email
         }).populate("contact")
         const filteredContact = existingUser.contact.map(eachContact => {
             return {
@@ -25,6 +25,9 @@ module.exports = app => {
 
         if(!isValid) {
             return res.status(400).json(errors)
+        }
+        if(contact.email === user.email) {
+            return res.status(400).json({ email: "This is your email address"})
         }
         const existingEmail = await User.findOne({
             email: contact.email
@@ -59,5 +62,30 @@ module.exports = app => {
                 res.send(userUpdate.populate("contact"))
             }
         }
+    })
+
+    app.delete('/api/contact/:userEmail/:email', async (req, res) => {
+        const { email, userEmail } = req.params
+
+        const existingUser = await User.findOne({
+            email: userEmail
+        }).populate("contact")
+
+        const secondUser = await User.findOne({
+            email
+        }).populate("contact")
+
+        const updateContact = existingUser.contact.filter(eachContact => eachContact.email !== email)
+        const secondUpdateContact = secondUser.contact.filter(eachContact => eachContact.email !== userEmail)
+
+        const updateUser = await existingUser.updateOne({ contact: updateContact }, {
+            new: true
+        } )
+
+        const secondUpdateUser = await secondUser.updateOne({ contact: secondUpdateContact }, {
+            new: true
+        } )
+        res.send(updateUser)
+
     })
 }

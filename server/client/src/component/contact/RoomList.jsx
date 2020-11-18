@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
+import PropTypes from 'prop-types'
 
 function RoomList({ auth, rooms, fetchRooms, handleClickRoom }) {
     const [roomList, setRoomList] = useState([])
@@ -41,6 +42,14 @@ function mapStateToProps( { auth, room: {rooms} } ) {
         auth,
         rooms
     }
+}
+
+
+RoomList.propTypes = {
+    auth: PropTypes.object.isRequired,
+    rooms: PropTypes.array,
+    handleClickRoom: PropTypes.func.isRequired,
+    fetchRooms: PropTypes.func.isRequired
 }
 
 

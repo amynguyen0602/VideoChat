@@ -45,9 +45,9 @@ export const logoutUser = () => dispatch => {
     dispatch(setCurrentUser({}));
 }
 
-export const editUser = (user) => async dispatch => {
+export const editUser = ({ email, firstname, lastname, password }) => async dispatch => {
     try {
-        const res = await axios.post('/api/users/edit', user)
+        const res = await axios.put('/api/user/'+ email, { firstname, lastname, password })
         const { token } = res.data;
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
@@ -102,8 +102,16 @@ export const addContact = (user, contact) => async dispatch => {
     }
 }
 
+export const deleteContact = (email, user) => async dispatch => {
+    await axios.delete('/api/contact/'+ user.email + "/" +email)
+}
+
+export const deleteRoom = (roomID, user) => async dispatch => {
+    await axios.delete('/api/room/'+ user.email + "/" + roomID)
+}
+
 export const fetchContact = (user) => async dispatch => {
-    const res = await axios.post('/api/fetch_contact', user)
+    const res = await axios.get('/api/contacts/'+ user.email)
     dispatch({
         type: FETCH_CONTACT,
         payload: res.data
@@ -111,16 +119,16 @@ export const fetchContact = (user) => async dispatch => {
 }
 
 export const fetchRooms = (user) => async dispatch => {
-    const res = await axios.post('/api/fetch_rooms', user)
+    const res = await axios.get('/api/rooms/' + user.email)
     dispatch({
         type: FETCH_ROOMS,
         payload: res.data
     })
 }
 
-export const editRoom = (room) => async dispatch => {
+export const editRoom = ({ roomID, password }) => async dispatch => {
     try {
-        const res = await axios.post('/api/editRoom', room)
+        const res = await axios.put('/api/room/'+ roomID, { password })
         dispatch({
             type: EDIT_ROOM,
             payload: res.data

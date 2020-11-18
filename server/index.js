@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const keys = require('./config/keys')
 require('./models/User')
 
-mongoose.connect(keys.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(keys.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 const app = express()
 
 app.use(bodyParser.json())

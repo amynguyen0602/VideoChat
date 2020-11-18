@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 
 const Participant = ({ participant }) => {
   const [videoTracks, setVideoTracks] = useState([])
@@ -57,6 +58,10 @@ const Participant = ({ participant }) => {
       <audio ref={audioRef} autoPlay={true} />
     </div>
   )
+}
+
+Participant.propTypes = {
+  participant: PropTypes.object
 }
 
 export default Participant;

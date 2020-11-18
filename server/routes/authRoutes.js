@@ -113,7 +113,7 @@ module.exports = app => {
         })
     })
 
-    app.post('/api/users/edit', async (req, res) => {
+    app.put('/api/user/:email', async (req, res) => {
 
         const { errors, isValid } = validateEditInput(req.body)
 
@@ -121,7 +121,7 @@ module.exports = app => {
             return res.status(400).json(errors)
         }
 
-        const email = req.body.email
+        const { email } = req.params
 
         const user = await User.findOne({email})
         if(!user) {
@@ -129,7 +129,7 @@ module.exports = app => {
             return res.status(404).json(errors)
         }
         if(req.body.change_pw_flag) {
-            const { firstname, lastname, password, email } = req.body
+            const { firstname, lastname, password } = req.body
             bcrypt.genSalt(10, (err, salt) => {
                 if(err) console.error('There was an error', err)
                 else {
